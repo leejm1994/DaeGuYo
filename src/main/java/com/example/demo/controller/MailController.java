@@ -28,7 +28,7 @@ public class MailController {
     }
 
     @GetMapping("/checkEmail")
-    public ResponseEntity<String> checkPhone(@RequestParam("email") String email) {
+    public ResponseEntity<String> checkEmail(@RequestParam("email") String email) {
         EmailComfirmDto dto = emailServiceImpl.checkEmail(email);
         String serverVerificationCode = dto.getEmailComfirm();
 
