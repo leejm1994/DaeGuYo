@@ -26,7 +26,7 @@
 <body>
 <div id="warp">
   <div class="side_menu">
-    <div class="ide_login">
+    <div class="side_login">
 
       <a href="#"> 안녕하세요! <strong>SEIN</strong>님</a>
 
@@ -161,7 +161,7 @@
           <section class="main-menu-sec">
             <div class="menu-category main">
               <div><hr></div>
-              <span>대표메뉴</span>
+              <span>메뉴</span>
               <div><hr></div>
             </div>
             <table class="menu-detail-table main">
@@ -209,11 +209,11 @@
           </section>
 
           <section class="menu-sec" >
-            <div class="menu-category">
+           <!-- <div class="menu-category">
               <div><hr></div>
               <span>메뉴</span>
               <div><hr></div>
-            </div>
+            </div>-->
             <table class="menu-detail-table">
               <tbody>
               <tr class="menu-tr" th:each="menu:${menu}" th:if="${menu.menu_catagory == '일반'}">

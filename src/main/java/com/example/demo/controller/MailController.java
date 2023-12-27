@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.dto.EmailComfirmDto;
-import com.example.demo.domain.dto.SmsComfirmDto;
-import com.example.demo.domain.emailService.EmailServiceImpl;
+import com.example.demo.domain.emailService.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,19 +15,18 @@ import java.util.Map;
 @Slf4j
 public class MailController {
 
-    @Autowired
-    private  EmailServiceImpl emailServiceImpl;
+    private final EmailService emailService;
 
     @RequestMapping(value = "/sendEmail", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<String> emailConfirm(@RequestBody Map<String, String> requestData) throws Exception {
         String email = requestData.get("FullEmail");
-        String confirm = emailServiceImpl.sendSimpleMessage(email);
+        String confirm = emailService.sendSimpleMessage(email);
         return ResponseEntity.ok(confirm);
     }
 
     @GetMapping("/checkEmail")
     public ResponseEntity<String> checkPhone(@RequestParam("email") String email) {
-        EmailComfirmDto dto = emailServiceImpl.checkEmail(email);
+        EmailComfirmDto dto = emailService.checkEmail(email);
         String serverVerificationCode = dto.getEmailComfirm();
 
         if (serverVerificationCode != null) {

@@ -10,6 +10,7 @@ import com.example.demo.domain.service.CartService;
 import com.example.demo.domain.service.MenuService;
 import com.example.demo.domain.service.OrderService;
 import com.example.demo.domain.service.ResService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,18 +35,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpSession;
 
 
+@RequiredArgsConstructor
 @Controller
 @Slf4j
 @RequestMapping()
 public class CartController {
-
-    @Autowired
-    private CartService cartService;
-
-    @Autowired
-    private ResService resService;
-    @Autowired
-    private MenuService menuService;
+    private final CartService cartService;
+    private final ResService resService;
+    private final MenuService menuService;
 
     @GetMapping("/cart")
     public String getCart(Model model, HttpSession session){
